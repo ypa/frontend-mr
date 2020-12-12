@@ -21,6 +21,7 @@ function App() {
   }, []);
 
   const movieClicked = movie => {
+    console.log(movie.title);
     setSelectedMoive(movie);
   }
 
