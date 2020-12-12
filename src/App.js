@@ -5,6 +5,7 @@ import MovieList from './components/movie-list';
 function App() {
 
   const [movies, setMovie] = useState([]);
+  const [selectedMovie, setSelectedMoive] = useState(null);
 
   useEffect(() => {
     fetch("http://localhost:8000/api/movies/", {
@@ -19,13 +20,17 @@ function App() {
     .catch(err => console.log(err));
   }, []);
 
+  const movieClicked = movie => {
+    setSelectedMoive(movie);
+  }
+
   return (
     <div className="App">
       <header className="App-header">
         <h1>Movie rater</h1>
       </header>
       <div className="layout">
-        <MovieList movies={movies} />
+        <MovieList movies={movies} movieClicked={movieClicked} />
         <div>Movie details</div>
       </div>
     </div>
