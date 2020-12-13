@@ -10,6 +10,20 @@ function MovieDetails({ movie }) {
     setHightlighted(high);
   }
 
+  const rateClicked = (rating) => {
+    fetch(`http://localhost:8000/api/movies/${movie.id}/rate_movie/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Token f390442bb40f4ac8918b6564088a53a775a00612'
+      },
+      body: JSON.stringify({ stars: rating + 1 })
+    })
+    .then(resp => resp.json())
+    .then(resp => console.log(resp))
+    .catch(err => console.log(err));
+  }
+
   return (
     <>
       { movie ? (
@@ -31,6 +45,7 @@ function MovieDetails({ movie }) {
                         className={highlighted > idx - 1 ? 'purple' : ''}
                         onMouseEnter={() => highlightRate(idx)}
                         onMouseLeave={() => highlightRate(-1)}
+                        onClick={() => rateClicked(idx)}
                       />
             })}
           </div>
