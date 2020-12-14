@@ -23,17 +23,14 @@ function App() {
     .catch(err => console.log(err));
   }, []);
 
-  const movieClicked = movie => {
-    console.log(movie.title);
-    setSelectedMoive(movie);
-  }
-
   const loadMovie = movie => {
     setSelectedMoive(movie);
+    setEditedMovie(null);
   }
 
   const editClicked = movie => {
     setEditedMovie(movie);
+    setSelectedMoive(null);
   }
 
   return (
@@ -42,7 +39,7 @@ function App() {
         <h1>Movie rater</h1>
       </header>
       <div className="layout">
-        <MovieList movies={movies} movieClicked={movieClicked} editClicked={editClicked} />
+        <MovieList movies={movies} movieClicked={loadMovie} editClicked={editClicked} />
         <MovieDetails movie={selectedMovie} updateMovie={loadMovie} />
         <MovieForm movie={editedMovie} />
       </div>
