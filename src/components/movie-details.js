@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 
-function MovieDetails({ movie }) {
+function MovieDetails({ movie, updateMovie }) {
 
   const [ highlighted, setHightlighted ] = useState(-1);
 
@@ -19,8 +19,20 @@ function MovieDetails({ movie }) {
       },
       body: JSON.stringify({ stars: rating + 1 })
     })
+    .then(() => getDetails())
+    .catch(err => console.log(err));
+  }
+
+  const getDetails = () => {
+    fetch(`http://localhost:8000/api/movies/${movie.id}/`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Token f390442bb40f4ac8918b6564088a53a775a00612'
+      },
+    })
     .then(resp => resp.json())
-    .then(resp => console.log(resp))
+    .then(resp => updateMovie(resp))
     .catch(err => console.log(err));
   }
 
