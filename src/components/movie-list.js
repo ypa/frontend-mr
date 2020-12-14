@@ -1,8 +1,14 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'
 
 function MovieList(props) {
   const movieClicked = (movie) => {
     props.movieClicked(movie);
+  }
+
+  const editClicked = (movie) => {
+    props.editClicked(movie);
   }
 
   return (
@@ -11,6 +17,8 @@ function MovieList(props) {
         return (
           <div key={movie.id}>
             <h2 onClick={() => movieClicked(movie)}>{movie.title}</h2>
+            <FontAwesomeIcon icon={faEdit} onClick={() => editClicked(movie) } />
+            <FontAwesomeIcon icon={faTrash} />
           </div>
         )
       })}
