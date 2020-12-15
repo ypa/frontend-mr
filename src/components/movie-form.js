@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { API } from '../api-service';
 
 function MovieForm({ movie, updatedMovie, createdMovie }) {
 
-  const [title, setTitle ] = useState(movie.title);
-  const [description, setDescription ] = useState(movie.description);
+  const [title, setTitle ] = useState('');
+  const [description, setDescription ] = useState('');
+
+  useEffect(() => {
+    setTitle(movie.title);
+    setDescription(movie.description);
+  }, [movie]) // run function whenever moive is changed
 
   const updateClicked = () => {
     console.log('updated');
