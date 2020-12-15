@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { API } from '../api-service';
 
-function MovieForm({ movie }) {
+function MovieForm({ movie, updatedMovie }) {
 
   const [title, setTitle ] = useState(movie.title);
   const [description, setDescription ] = useState(movie.description);
@@ -9,7 +9,7 @@ function MovieForm({ movie }) {
   const updateClicked = () => {
     console.log('updated');
     API.updateMovie(movie.id, {title: title, description: description})
-    .then(resp => console.log(resp))
+    .then(resp => updatedMovie(resp))
     .catch(error => console.log(error))
   }
 
