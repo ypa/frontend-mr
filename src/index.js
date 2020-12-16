@@ -6,15 +6,18 @@ import Auth from './components/auth';
 import reportWebVitals from './reportWebVitals';
 import { Route, BrowserRouter } from 'react-router-dom';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Route exact path="/" component={Auth} />
-      <Route exact path="/movies" component={App} />
-    </BrowserRouter>
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+function Router() {
+  return (
+    <React.StrictMode>
+      <BrowserRouter>
+        <Route exact path="/" component={Auth} />
+        <Route exact path="/movies" component={App} />
+      </BrowserRouter>
+    </React.StrictMode>
+  )
+}
+
+ReactDOM.render(<Router />, document.getElementById('root'));
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
