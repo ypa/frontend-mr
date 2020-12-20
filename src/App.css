@@ -66,3 +66,10 @@ button:disabled {
 .fa-trash {
   color: crimson;
 }
+h1 {
+  color: orange;
+}
+h1 .fa-film {
+  color: white;
+  transform: rotate(30deg);
+}
