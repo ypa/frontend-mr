@@ -26,6 +26,8 @@ function Auth() {
     .catch(error => console.log(error))
   }
 
+  const isDisabled = username.length === 0 || password.length === 0;
+
   return (
     <div className="App">
       <header className="App-header">
@@ -42,8 +44,8 @@ function Auth() {
           onChange={event => setPassword(event.target.value)}
         /><br />
         {isLoginView
-          ? <button onClick={loginClicked}>Login</button>
-          : <button onClick={registerClicked}>Register</button>
+          ? <button onClick={loginClicked} disabled={isDisabled}>Login</button>
+          : <button onClick={registerClicked} disabled={isDisabled}>Register</button>
         }
         {isLoginView
           ? <p onClick={() => setIsLoginView(false)}>You don't have an account? Register here!</p>
