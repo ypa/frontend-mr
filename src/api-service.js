@@ -19,6 +19,15 @@ export class API {
     }).then(resp => resp.json())
   }
 
+  static getMovies(token) {
+    return fetch("http://localhost:8000/api/movies/", {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Token ${token}`
+      }
+    }).then(resp => resp.json());
+  }
   static updateMovie(movie_id, body, token) {
     return fetch(`http://localhost:8000/api/movies/${movie_id}/`, {
       method: 'PUT',
